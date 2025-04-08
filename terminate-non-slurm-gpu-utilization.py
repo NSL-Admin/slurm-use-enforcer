@@ -1,6 +1,5 @@
 import subprocess
 import syslog
-from pathlib import Path
 
 from psutil import Process
 from pydantic import BaseModel
@@ -59,11 +58,9 @@ if __name__ == "__main__":
     # transform users info
     username2slackid = make_username2slackid(users=config.users)
 
-    # get all nvidia devices
-    gpus = Path("/dev").glob("nvidia*")
     # get all processes using any of those devices
     out = subprocess.check_output(
-        ["lsof", "-t"] + list(map(lambda p: str(p.resolve()), gpus)), text=True
+        ["lsof", "-t"] + ["/dev/nvidia0", "/dev/nvidia1"], text=True
     )
     # kill processes whose parent is not SLURM (slurmstepd)
     for pid in out.split():
