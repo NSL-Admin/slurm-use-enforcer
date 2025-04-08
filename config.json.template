@@ -1,0 +1,15 @@
+{
+    "users": [
+        {
+            "username": "sample_user",
+            "slack_user_id": "UXXXXXXXXXX"
+        }
+    ],
+    "slurm_process_identifiers": [
+        "slurmstepd"
+    ],
+    "ignored_users": [
+        "root",
+        "nvidia-persistenced"
+    ]
+}
